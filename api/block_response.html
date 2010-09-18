@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="None" lang="None">
+<head>
+<title>
+Your life, on the line - Plurk.com
+</title>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+<meta name="verify-v1" content="iBRwaQ/3d4NoF1uaa2SAfCJ962ORry1TE8/4XxtIbHk=" />
+
+<link rel="shortcut icon" type="image/png" href="http://static.plurk.com/static/favicon.png" />
+<link href="http://www.plurk.com/apple-touch-icon.png" rel="apple-touch-icon" />
+
+
+<script type="text/javascript">
+/*<![CDATA[*/
+function $static_path(path) { return 'http://static.plurk.com' + path; }
+var GLOBAL = {"page_user": null, "session_user": {"page_title": "_nec", "uid": 188140, "is_channel": 0, "full_name": "Szabolcs Toth", "last_seen_plurk": 7766053, "id": 188140, "is_email_confirmed": 1, "default_qual": "freestyle", "display_name": null, "default_qual_mini": "freestyle", "theme": "dark-theme", "date_of_birth": "Wed, 16 Jul 1980 00:01:00 GMT", "location": "Budapest, Hungary", "recruited": 7, "default_lang": "hu", "relationship": "married", "has_profile_image": 1, "last_plurk": "{\"lang\": \"hu\", \"content_raw\": \"http:\\\/\\\/www.objektivek.com\\\/images\\\/hirek\\\/20080708\\\/Hasselblad-HTS-1.5.jpg (tilt-shift by hasselblad)\", \"responses_seen\": 0, \"qualifier\": \":\", \"plurk_id\": 7738655, \"response_count\": 0, \"content\": \"<a href=\\\"http:\\\/\\\/www.objektivek.com\\\/images\\\/hirek\\\/20080708\\\/Hasselblad-HTS-1.5.jpg\\\" class=\\\"ex_link pictureservices\\\">tilt-shift by hasselblad<\\\/a>\", \"is_unread\": 0, \"user_id\": null, \"owner_id\": 188140, \"limited_to\": null, \"no_comments\": 0, \"posted\": \"Fri, 26 Sep 2008 13:28:16 GMT\"}", "packs_hash": "d9860099547bbd3", "nick_name": "_nec", "gender": 1, "notifications_count": 0, "karma": 49.420000000000002, "timeformat": 1}}
+/*]]>*/
+</script>
+
+
+    <script type="text/javascript" src="http://static.plurk.com/generated/AJS.js?3a03ce0253b1fe4"></script>
+<link rel="stylesheet" type="text/css" href="http://static.plurk.com/generated/login_register.css?1a1efa0d3154657" />
+<link rel="stylesheet" type="text/css" href="http://static.plurk.com/generated/overlay.css?29946163e3d4af9" />
+<script type="text/javascript" src="http://static.plurk.com/generated/overlay.js?19ce5f8682f5cdc"></script>
+<script type="text/javascript" src="http://static.plurk.com/generated/friends.js?44bee01ae9417fd"></script>
+<link rel="stylesheet" type="text/css" href="http://static.plurk.com/generated/friends.css?eaf3cdab748f828" />
+<script type="text/javascript" src="http://static.plurk.com/generated/profile.js?9590c1e3ece8932"></script>
+<link rel="stylesheet" type="text/css" href="http://static.plurk.com/generated/profile.css?e7498da6c1da202" />
+
+
+
+
+
+</head>
+
+<body>
+
+
+    <div id="content">
+        
+
+
+<div class="tabs">
+    <ul>
+        <li class=""><a href="/Friends/?page=individuals">Friends</a></li>
+        <li class=""><a href="/Friends/?page=cliques">Cliques</a></li>
+        <li class="current"><a href="/Friends/showBlockList">Blocked users</a></li>
+        <li class=""><a href="/Friends/inviteFriends">Find/invite friends</a></li>
+    </ul>
+</div>
+
+
+<div class="content_inner">
+        <div id="changed">necteszt is now blocked</div>
+        <script type="text/javascript">
+        AJS.fx.highlight($('changed'), {
+            duration: 10000,
+            onComplete: function() { 
+                removeElement($('changed'));
+        }});
+
+        top.GB_getLast().reload_on_close = true;
+        </script>
+
+    <h2>How to block a user</h2>
+    <p>In the info box menu select <b>Block ...</b></p>
+    <p>
+        <img src="http://static.plurk.com/static/friends/how_to_block.gif" />
+    </p>
+	<p>or you can prevent someone from becoming your fan by blocking him/her</p>
+	 <p>
+        <img src="http://static.plurk.com/static/friends/block_fans.gif" />
+    </p>
+    A blocked user won't be able to see your profile, follow you, respond to your plurks or befriend you. You can use this feature to protect yourself.
+   <br /><br />
+
+    <h2 style="margin-top: 15px">Users that you have blocked</h2>
+    <div id="list" style="margin-top: -10px">
+        <div class="loading">
+            <img src="http://static.plurk.com/static/indicator.gif" />
+        </div>
+    </div>
+</div>
+
+    </div>
+
+
+
+
+
+<script type="text/javascript">
+    if(window.SiteState)
+        SiteState.updateLoginLink();
+    else {
+        if(window.$ && $('top_login'))
+            setStyle($('top_login'), {visibility: 'visible'});
+    }
+</script>
+
+
+
+<script>
+AEV(window, 'load', function() {
+    var friend_list = new Friends('friends', 188140, 1, "\/Friends\/getBlockedByOffset");
+
+    SiteState = top.SiteState;
+    TopBar = top.TopBar;
+
+    Profile.with_name = false;
+
+    friend_list.show_action_help = true;
+    friend_list.has_action_row = true;
+    friend_list.remove_url = '/Friends/removeBlock';
+    friend_list._renderActionRow = function(item) {
+        return DIV({c: 'div_action friend_action', align: 'right'},
+            TABLE(TBODY(TR(
+                TH({c: 'td_remove', s: 'text-align: right !important;'}, this._getRemoveFriend(item))
+        ))));
+    };
+
+    friend_list.renderHelpRow = function() {
+        return DIV({c: 'div_action friend_action', align: 'right'},
+            TABLE({s: 'height: auto'}, TBODY(TR(
+            TH({c: 'td_remove', s: 'text-align: right !important;'}, _('Remove block'))
+        ))));
+    };
+
+    friend_list.empty_list = LI("Currently, you are not blocking anyone");
+
+    friend_list.str_confirm_remove = _('Are you sure you want to unblock %s?');
+
+    friend_list.renderList();
+    updateHeight(250);
+});
+</script>
+
+
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+    _uacct = "UA-53436-7";
+    if (this.urchinTracker) urchinTracker();
+</script>
+
+</body>
+</html>

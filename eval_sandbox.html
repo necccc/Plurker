@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<title></title>
+		<script type="text/javascript" src="lib/jquery-1.4.2.js"></script>
+		<script type="text/javascript" src="lib/jquery-json.2.2.js"></script>
+		<script type="text/javascript">
+		    $(window).load(function(){
+			    window.childSandboxBridge = {
+					'parseJSON': parseJSON,
+					'externalEval': eval
+				};
+			});
+
+			function parseJSON(str){
+				return $.parseJSON(str);
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

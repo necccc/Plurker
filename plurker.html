@@ -1,0 +1,153 @@
+<html>
+	<head>
+		<title>plurker</title>
+		<link href="plurker.css" rel="stylesheet" type="text/css" />
+
+		<script type="text/javascript" src="lib/air/AIRIntrospector.js"></script>
+		<script type="text/javascript" src="lib/air/AIRAliases.js"></script>
+
+		<script type="text/javascript" src="lib/jquery-1.4.2.js"></script>
+		<script type="text/javascript" src="lib/jquery-json.2.2.js"></script>
+
+		<script type="text/javascript" src="lib/mootools-1.2.5-core.js"></script>
+		<script type="text/javascript" src="lib/mootools-1.2.5-browser.js"></script>
+		<script type="text/javascript" src="lib/mootools-1.2.5-array.js"></script>
+		<script type="text/javascript" src="lib/mootools-1.2.5-function.js"></script>
+		<script type="text/javascript" src="lib/mootools-1.2.5-number.js"></script>
+		<script type="text/javascript" src="lib/mootools-1.2.5-string.js"></script>
+		<script type="text/javascript" src="lib/mootools-1.2.5-hash.js"></script>
+		<script type="text/javascript" src="lib/mootools-1.2.5-event.js"></script>
+		<script type="text/javascript" src="lib/mootools-1.2.5-class.js"></script>
+		<script type="text/javascript" src="lib/mootools-1.2.5-classextras.js"></script>
+
+		<script type="text/javascript" src="src/base.js"></script>
+		<script type="text/javascript" src="src/bootstrap.js"></script>
+		<script type="text/javascript" src="src/Chrome.js"></script>
+
+		<script type="text/javascript" src="src/Template.js"></script>
+		<script type="text/javascript" src="src/TemplateParser.js"></script>
+
+		<script type="text/javascript" src="src/Schema.js"></script>
+		<script type="text/javascript" src="src/AIRStorage.js"></script>
+		<script type="text/javascript" src="src/Storage.js"></script>
+		<script type="text/javascript" src="src/PlurkStorage.js"></script>
+
+		<script type="text/javascript" src="src/AppWindow.js"></script>
+		<script type="text/javascript">
+
+		/*	plurker.api.sget('/API/Users/login',{username: 'nec@shell8.net', password: "qqwe321"},function(response){
+
+				LOG(response)
+
+					for( var k in response.plurks_users ){
+						LOG(response.plurks_users[k])
+					}
+
+			})*/
+
+
+/*
+			plurker.api.get('/API/Responses/get',{plurk_id: 462569795, from_response: 0},function(response){
+					LOG(response)
+
+
+					while ( k = response.responses.shift() ){
+						LOG(k)
+					}
+			})
+	*/
+
+
+
+			new plurker.PlurkStorage({});
+
+
+		</script>
+		<!-- script type="text/javascript" src="plurker.js"></script>
+
+		<script type="text/javascript" src="src/plurker.actions.js"></script>
+		<script type="text/javascript" src="src/plurker.appupdater.js"></script>
+		<script type="text/javascript" src="src/plurker.chrome.js"></script>
+		<script type="text/javascript" src="src/plurker.fansfriends.js"></script>
+		<script type="text/javascript" src="src/plurker.functions.js"></script>
+		<script type="text/javascript" src="src/plurker.lang.js"></script>
+		<script type="text/javascript" src="src/plurker.plurk.js"></script>
+		<script type="text/javascript" src="src/plurker.plurklist.js"></script>
+		<script type="text/javascript" src="src/plurker.requestcache.js"></script>
+		<script type="text/javascript" src="src/plurker.response.js"></script>
+		<script type="text/javascript" src="src/plurker.user.js"></script>
+		<script type="text/javascript" src="src/plurker.userfactory.js"></script>
+		<script type="text/javascript" src="src/plurker.userinstance.js"></script -->
+
+        <!-- script type="text/javascript" src="plurker.compressed.js"></script -->
+	</head>
+
+    <body>
+       <div id="Wrapper">
+		   <div id="Head">
+		   		<span id="Minimize"></span>
+				<span id="Close"></span>
+
+		   </div>
+			<form id="LoginForm">
+				<span class="error"></span>
+				<span class="info"></span>
+				<fieldset>
+
+					<label>Login</label><input type="text" name="name" /><br />
+					<label>Pass</label><input type="password" name="password" /><br />
+					<input type="submit" /><br />
+					<label for="Remember" class="indent"><input type="checkbox" id="Remember" />Remember me</label><br />
+					<label for="AutoLogin" class="indent"><input type="checkbox" id="AutoLogin" disabled="disabled" />Log in automatically</label><br />
+
+					<b class="login"></b><b class="pass"></b>
+				</fieldset>
+				<a href="http://www.plurk.com/Users/showLogin?error=incorrect_login" target="_blank">Forgot password?</a><br />
+				<a href="http://plurk.com/redeemByURL?from_uid=188140&check=-2105781586&s=1" target="_blank">Register new Plurk ID...</a>
+			</form>
+
+			<form id="PlurkForm">
+				<fieldset>
+				<span id="Avatar"></span>
+				<select>
+			      <option >:</option>
+			      <option  value="gives" class="qualifier q_gives">gives</option>
+			      <option  value="thinks" class="qualifier q_thinks">thinks</option>
+			      <option  value="asks" class="qualifier q_asks">asks</option>
+			      <option  value="wishes" class="qualifier q_wishes">wishes</option>
+			      <option  value="freestyle" class="qualifier q_freestyle">freestyle</option>
+			      <option  value="loves" class="qualifier q_loves">loves</option>
+			      <option  value="will" class="qualifier q_will">will</option>
+			      <option  value="is" class="qualifier q_is">is</option>
+			      <option  value="has" class="qualifier q_has">has</option>
+			      <option  value="shares" class="qualifier q_shares">shares</option>
+			      <option  value="was" class="qualifier q_was">was</option>
+			      <option  value="likes" class="qualifier q_likes">likes</option>
+			      <option  value="wants" class="qualifier q_wants">wants</option>
+			      <option  value="says" class="qualifier q_says">says</option>
+			      <option  value="hates" class="qualifier q_hates">hates</option>
+			      <option  value="feels" class="qualifier q_feels">feels</option>
+				</select><br />
+				<input type="text" name="plurk" maxlength="140" />
+				<input type="submit" value="" />
+				<span class="inputend"></span>
+				</fieldset>
+			</form>
+
+			<div id="PlurkScroll">
+				<ul id="Plurks">
+				</ul>
+			</div>
+
+			<div id="Bottom">
+				<span id="ResizeBottomRight"></span>
+			</div>
+		</div>
+		<div id="WrapperShadow"></div>
+        <iframe
+			id="EvalSandbox"
+			sandboxRoot="http://plurk.com/"
+			documentRoot="app:/"
+			src="eval_sandbox.html" frameborder="0" height="0" width="0"></iframe>
+    </body>
+</html>

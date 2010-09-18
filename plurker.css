@@ -1,0 +1,493 @@
+@charset "utf-8";
+
+/* preset */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{ margin:0;padding:0; }
+table { border-collapse:collapse;border-spacing:0; }
+fieldset,img { border:0; }
+address,caption,cite,code,dfn,em,strong,th,var { font-style:normal;font-weight:normal; }
+ol,ul { list-style:none; }
+caption,th { text-align:left; }
+h1,h2,h3,h4,h5,h6{ font-size:100%;font-weight:normal; }
+q:before,q:after{ content:''; }
+abbr,acronym { border:0; }
+
+.hidden {display: none !important;}
+.visible {display: block;}
+div.print {display: none;}
+div.printscreen {display: none;}
+
+strong { font-weight: bold; }
+
+html {
+	
+	
+}
+
+body{ 
+	-khtml-user-select:none;
+	background: transparent;
+	overflow: hidden;
+}
+
+div#Wrapper {
+	background: #323232;
+	margin: 5px;
+	border: 5px solid #323232;
+	-webkit-border-radius:8px;
+	position: relative;
+	z-index: 10;
+}
+div#WrapperShadow {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background: #323232;
+	border: 5px solid #323232;
+	-webkit-border-radius:8px;
+	
+	opacity: .5;	
+}
+
+div#Head {
+	position: absolute;
+	top: -5px;
+	left: -5px;
+	width: 100%;
+	padding: 2px 6px 2px 0;
+	height:25px;
+	background: #616161 url(images/logo.png) 56px 0 no-repeat;
+	border: 2px solid #616161;
+	-webkit-border-radius:8px;
+}
+
+div#Head,
+div#Bottom {
+	position: relative;
+	height: 15px;
+	width: 100%;
+	margin: 0;
+}
+div#Bottom {
+	position: absolute;
+	bottom: 0;
+}
+
+span#ResizeBottomRight,
+span#Close,
+span#Minimize {
+	width: 16px;
+	height: 16px;
+	display:block;
+	cursor: pointer;
+	position: absolute;
+	right: 0;	
+	margin: 0;
+}
+
+span#Minimize {
+	right: 20px;
+	background: url(images/icon_minimize.png) top left no-repeat;
+} 
+span#Minimize:hover {
+	background-position: 0 -16px;
+} 
+span#Close {
+	background: url(images/icon_close.png) top left no-repeat;
+} 
+span#Close:hover {
+	background-position: 0 -16px;
+} 
+span#ResizeBottomRight {
+	background: url(images/icon_resize.png) top left no-repeat;
+}
+span#ResizeBottomRight:hover {
+	background-position: 0 -16px;
+}
+
+
+form#PlurkForm input[type=text]:focus,
+form#LoginForm fieldset input[type=text]:focus,
+form#LoginForm fieldset input[type=password]:focus {
+	border: none;
+	-webkit-focus-ring-color : #fff;
+	outline: none;
+}
+
+form#LoginForm span.error,
+form#LoginForm span.info {
+	background: #b60d2a;
+	border: 5px solid #b60d2a;
+	-webkit-border-radius:8px;
+	margin: 0 10px 0px 10px;
+	padding: 0px;
+	position: relative;
+	color:#fff;
+	display: none;
+	width: 250px;
+	position: absolute;
+	z-index: 11;
+	font-weight: bold;
+}
+
+form#LoginForm span.info {
+	background: #59b60d;
+	border: 5px solid #59b60d;
+}
+
+form#LoginForm fieldset {
+	background: #616161;
+	border: 5px solid #616161;
+	-webkit-border-radius:8px;	
+	margin: 10px 10px 8px 10px;
+	padding: 30px 10px 10px 10px;
+	position: relative;
+	z-index: 10;
+}
+form#LoginForm fieldset b {
+	width: 7px;
+	height: 27px;
+	display: block;
+	background: url(images/plurk_end.png) top left no-repeat;	
+	position: absolute;
+	
+	
+	z-index: 10;
+}
+form#LoginForm fieldset b.login { top: 29px; left: 230px; }
+form#LoginForm fieldset b.pass { top: 69px; left: 230px; }
+
+form#LoginForm fieldset label {
+	display: block;
+	float: left;
+	font-size: 14px;
+	height: 27px;
+	width: 50px;
+	color:#e1e1e1;
+	font-weight: bold;
+}
+
+form#LoginForm fieldset label[for] {
+	display: block;
+	width: auto;
+	height: 18px;
+	font-size: 11px;
+}
+
+form#LoginForm fieldset label[for].indent {
+	margin-left: 50px;
+}
+
+
+form#LoginForm fieldset input[type=text],
+form#LoginForm fieldset input[type=password] {
+	background: url(images/plurk_input.png) top left no-repeat;	
+	font-size: 14px;
+	padding-left: 7px;
+	width: 170px;
+	border: none;
+	height: 27px;
+	display: block;
+}
+form#LoginForm fieldset input[type=submit] {
+	height: 27px;
+	margin-left: 50px;
+	width: 70px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+form#LoginForm fieldset input[type=checkbox] {
+	float: left;
+	margin-right: 5px;
+}
+
+form#LoginForm a {
+	margin-left: 20px;
+	line-height: 18px;
+	color:#e1e1e1;
+}
+
+span#Avatar {
+	width: 45px;
+	height: 45px;
+	display: block;
+	background: black;
+	position: absolute;
+	z-index: 20;
+	top: -5px;
+	left: -5px;
+	background: #616161;
+	border: 5px solid #616161;
+	-webkit-border-radius:8px;	
+}
+
+span#Avatar img {
+	position: relative;
+	z-index: 10;
+}
+span#Avatar span {
+	width: 45px;
+	height: 45px;
+	display: block;
+	background: url(images/image_over.png) top left no-repeat;	
+	position: absolute;
+	z-index: 20;
+	top: 0;
+	left: 0;
+}
+
+form#PlurkForm,
+div#PlurkScroll,
+.jScrollPaneContainer {
+	display: none;
+}
+
+
+form#PlurkForm fieldset {
+	background: #323232;
+	padding: 2px 0 8px 0;
+	margin-top: 0px;
+}
+form#PlurkForm input[type=submit] {
+	background: url(images/plurk_submit.png) top left no-repeat;
+	border: none;
+	width: 51px;
+	height: 27px;	
+	position: absolute;
+	right: 0px;
+	top: 56px;
+	cursor: pointer;
+}
+form#PlurkForm input[type=text] {
+	background: url(images/plurk_input.png) top left no-repeat;	
+	font-size: 14px;
+	padding-left: 7px;
+	border: none;
+	height: 27px;
+	display: block;
+	width: auto;	
+}
+form#PlurkForm span.inputend {
+	width: 7px;
+	height: 27px;
+	display: block;
+	background: url(images/plurk_end.png) top left no-repeat;	
+	position: absolute;
+	top: 56px;
+	right: 58px;
+	z-index: 10;
+	
+}
+
+
+form#PlurkForm fieldset select {
+	margin-left: 56px;	
+	margin-bottom: 8px;
+	height: 24px;
+	width: 153px;
+}
+form#PlurkForm fieldset select:focus {
+	-webkit-focus-ring-color : #fff;
+	outline: none;
+}
+
+div#PlurkScroll {
+	padding: 0 !important;
+	/*width: 100% !important;*/
+	
+}
+
+.jScrollPaneContainer {
+	border:2px solid #616161;
+	-webkit-border-radius: 8px;
+	overflow:hidden;
+	position:relative;
+	/*width: 100% !important;*/
+	background:  #616161;
+	margin-right: 8px;
+}
+
+.jScrollPaneTrack {
+	/*background: #696969;*/
+	position: absolute;
+	top: 0px;
+	margin-top: -21px;
+	right: 1px;
+}
+.jScrollPaneDrag {
+	background: #323232;
+	border:2px solid #323232;
+	-webkit-border-radius: 5px;
+	cursor:pointer;
+	overflow:hidden;
+	position:absolute;	
+	width: 13px !important; 
+	padding: 0;
+	margin: 19px 0 25px 0;
+}
+.jScrollPaneDrag div { display: none; }
+
+.jScrollPaneContainer a.jScrollArrowUp,
+.jScrollPaneContainer a.jScrollArrowDown {
+	background: #323232;
+	border:2px solid #323232;
+	-webkit-border-radius: 5px;
+	width: 13px !important;
+	height: 0 !important;
+	padding-top: 13px !important;
+	overflow: hidden;
+	display: block;	
+	position: absolute;
+	right: 1px;
+	cursor: pointer;
+	
+}
+
+.jScrollPaneContainer a.jScrollArrowUp { top: 0; }
+.jScrollPaneContainer a.jScrollArrowDown { bottom: 0; }
+
+.jScrollArrowDown.disabled,
+.jScrollArrowUp.disabled {
+	opacity: .5;
+}
+
+
+ul#Plurks {
+	padding: 8px 5px 40px 25px;
+	/*background: #323232;*/	
+	
+}
+
+
+ul#Plurks li {
+	position: relative;	
+}
+ul#Plurks li div {
+	overflow: hidden;
+	background: #ffffff;
+	border: 5px solid #fff;
+	-webkit-border-radius: 3px;
+	padding: 3px 3px 3px 3px;	
+	margin-bottom: 8px;	
+	position: relative;
+	z-index: 10;
+}
+ul#Plurks li img {
+	vertical-align: middle;
+}
+ul#Plurks li small {
+	display: inline;
+}
+ul#Plurks li span.responses {
+	display: block;
+	padding-top: 4px;
+	padding-right: 10px;
+	text-align: right;
+	
+	background: url(images/plurk_response_open.gif) 8px right no-repeat;
+	position: relative;
+	
+	cursor: pointer;
+}
+ul#Plurks li span.responses.open {
+	background-image: none;
+}
+
+ul#Plurks li span.responses small {
+	color: #555555;
+}
+
+span.minimage {
+	background: #ffffff;
+	border: 3px solid #fff;
+	-webkit-border-radius: 3px;
+	display: block;
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	left: -23px;
+	top: 0;
+}
+span.responseClose {
+	background: #edede2 url(images/plurk_response_close.gif) center center no-repeat;
+	width: 16px;
+	height: 15px;
+	display: block;
+	position: absolute; 
+	bottom: 13px;
+	right: 0;
+	border: 3px solid #edede2;
+	-webkit-border-top-right-radius: 3px;
+	-webkit-border-bottom-right-radius: 3px;	
+	cursor: pointer;
+	
+	display: none;
+}
+ul.responses {
+	position: relative;
+	z-index: 5;
+	top: -13px;
+	padding-top: 5px;
+	margin: 0 19px 0 8px;
+	background: #edede2;
+	border: 5px solid #edede2;
+	-webkit-border-bottom-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+}
+ul.responses li {
+	padding-bottom: 5px;
+	overflow: hidden;
+}
+
+ul.responses li.add {
+	padding-bottom: 0px;
+	padding-top: 3px;
+	overflow: hidden;
+	background: url(images/icon_response.gif) 0 4px no-repeat;
+	padding-left: 15px;
+	padding-right: 16px;
+	position: relative;
+}
+ul.responses li.add input[type=text] {
+	height: 16px;
+	font-size: 12px;
+	border: 1px solid #8f8f8b;
+	width: 100%;
+}
+
+ul.responses li.add input[type=text]:focus {
+	-webkit-focus-ring-color : #fff;
+	outline: none;
+}
+
+ul.responses li.add input[type=image] {
+	position: absolute;
+	right: 0px;
+	top: 4px;
+}
+
+
+
+a {
+	color: #b60d2a;	
+}
+a.user {
+	text-decoration: none;
+	font-weight: bold;
+}
+
+
+
+span#TypeCounterIndicator {
+	position: absolute;
+	width: 15px;
+	height: 11px;
+	border: 1px solid #000000;
+	-webkit-border-bottom-right-radius: 3px;
+	-webkit-border-bottom-left-radius: 3px;
+	-webkit-border-bottom-top-radius: 3px;
+	-webkit-border-bottom-bottom-radius: 3px;
+	display: none;
+}

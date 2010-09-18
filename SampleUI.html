@@ -1,0 +1,66 @@
+<html>
+	<head>
+		<link href="sample.css" rel="stylesheet" type="text/css">
+		
+		<!-- Uncomment the following line to add introspection.  When running the application hit F12 to bring up the introspector -->
+        <!-- <script type="text/javascript" src="lib/air/AIRIntrospector.js"></script> -->
+        
+        <!-- Uncomment the following line to use the AIR source viewer -->
+        <!-- <script type="text/javascript" src="lib/air/AIRSourceViewer.js"></script> -->
+        
+        <!-- Uncomment the following line to use the AIR Localizer -->
+        <!-- <script type="text/javascript" src="lib/air/AIRLocalizer.js"></script> -->
+        
+        <!-- Uncomment the following line to use the AIR Menu Builder -->
+        <!-- <script type="text/javascript" src="lib/air/AIRMenuBuilder.js"></script> -->
+        
+		<script type="text/javascript">
+		   // developer function implemented in non-application sandbox.
+		    function forApplicationSandbox() {
+		        return "This is from non-application sandbox.";
+		    }
+
+		    function doLoad() {
+		        // expose this function for the application sandbox 
+		        // by writing to window.childSandboxBridge.            
+		        window.childSandboxBridge = {'callMe': forApplicationSandbox};
+		    }
+		</script>
+	</head>
+	<body onload="doLoad()">
+	    <h3>Non-Application Sandbox Content</h3>
+	    
+	    <ul>
+	    	<li>Loaded from application resource directory into non application
+	    		sandbox via an iframe with the following attributes:
+	    		
+	    		<br/><br/><code>src="SampleUI.html"
+          		<br/>			 sandboxRoot="http://example.com/"
+           		<br/>			 documentRoot="app:/"</code>
+            </li>
+            
+	        <li>Behaves like content in a network sandbox &mdash; can call <code>eval()</code> 
+	        	without restrictions, can load remote JavaScript files, etc:
+				
+				<br/> <input type="button" 
+						onclick='eval("alert(44)")' 
+						value='eval("alert(44)")'/>
+			</li>
+
+	        <li>Does <em>not</em> have access to AIR APIs &mdash; the following throws an exception:
+           		<br/> <input type="button" 
+					onclick="try {window.runtime.flash.desktop.NativeApplication.nativeApplication.exit()} catch (e) {alert(e)}" 
+            				value="window.runtime.flash.system.NativeApplication.nativeApplication.exit()"/></li>
+
+	        <li>Can call functions from the application sandbox exposed by the developer 
+	        	via the sandbox bridge:
+	        
+	            <br/> <input type="button" onclick="alert(parentSandboxBridge.readLocalFile())" 
+	            	value="Call the exposed function for reading application.xml"/>
+	        </li>
+
+	        <li>Can expose functions to the application sandbox via the sandbox bridge.</li>
+	    </ul>
+	
+	</body>
+</html>
