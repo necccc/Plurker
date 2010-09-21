@@ -82,10 +82,6 @@ plurker.Chrome = new Class({
 		$('body').css({
 			height: ~~height - 32
 		});
-		$('div#WrapperShadow').css({
-			height: ~~height - 14,
-			width: ~~width - 10
-		});
 		$('div#Wrapper').css({
 			height: ~~height - 24,
 			width: ~~width - 20
@@ -101,6 +97,5 @@ plurker.Chrome = new Class({
 			height: ~~height - 145,
 			width: ~~width - 32
 		});
-
 	}
 });

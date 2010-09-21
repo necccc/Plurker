@@ -23,6 +23,7 @@ plurker.DiscussionWindow
 */
 
 plurker.db = false;
+plurker.tpl = {};
 
 plurker.api = {
 	key: "mzI1IsnSl31hRdRIjHk8MJWVsx6AooKd",
