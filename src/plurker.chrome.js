@@ -21,10 +21,15 @@ var Chrome = function(){
 		application: null,
 		initialize : function(){
 			window.chrome = this;
+			
+			
 			$('div#Head').mousedown(function(){ 	Chrome.move(); });
 			$('span#Close').click(function(){ 		Chrome.close(); });
 			$('span#Minimize').click(function(){ 	Chrome.minimize(); });	
+			
+			
 			this.onResize();
+			
 			if (this.options.resizable) {
 				$('span#ResizeBottomRight').mousedown(function(){
 					Chrome.resize('BR');
