@@ -3,13 +3,14 @@ plurker.Chrome = new Class({
 	Implements: Options,
 
 	options: {
-		exitOnClose		: false,
-		minimizable		: true,
-		maximizable		: false,
-		resizable		: true,
-		fadeInactive	: false,
-		alwaysInFront	: false,
-		fadeAnimStart	: true
+		content: '#Content',
+		exitOnClose: false,
+		minimizable: true,
+		maximizable: false,
+		resizable: true,
+		fadeInactive: false,
+		alwaysInFront: false,
+		fadeAnimStart: true
 	},
 
 	unfocus: 0,
@@ -39,8 +40,15 @@ plurker.Chrome = new Class({
 		}
 		window.nativeWindow.alwaysInFront = this.options.alwaysInFront;
 
+
+		this.content = $(this.options.content);
+		plurker.setContent = this.setContent.bind(this);
+
 	},
 
+	setContent: function( content ) {
+		this.content.html( content );
+	},
 
 	loader: function( _bool ){
 		if(_bool){

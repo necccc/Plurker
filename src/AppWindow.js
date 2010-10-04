@@ -12,7 +12,7 @@ plurker.Window = new Class({
 		LOG('application');
 
 
-new plurker.Account();
+		new plurker.Account();
 		// watch login event
 
 

@@ -28,7 +28,7 @@ plurker.Template = new Class({
 
 	//generate pseudocode and store in _func
 	compile: function() {
-		this._func = parser.compile(this._value);
+		this._func = this._parser.compile(this._value);
 	},
 
 	//run template with given json object

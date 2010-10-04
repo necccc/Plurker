@@ -38,7 +38,7 @@ plurker.api = {
 			plurker.api.url(command),
 			$merge(params, {api_key:plurker.api.key }),
 			callback
-		)
+		);
 	},
 	post: function(command, params, callback){
 		$.ajax({
@@ -50,11 +50,13 @@ plurker.api = {
 		});
 	},
 	sget: function(command, params, callback){
+
+		//LOG(callback);
 		$.getJSON(
 			plurker.api.url(command, true),
 			$merge(params, {api_key:plurker.api.key }),
 			callback
-		)
+		);
 	},
 	spost: function(command, params, callback){
 		$.ajax({
@@ -64,7 +66,11 @@ plurker.api = {
 			dataType: 'json',
 			success: callback
 		});
-	}
+	},
+	USERLOGIN: '/API/Users/login',
+	PUBLICPROFILE: '/API/Profile/getPublicProfile',
+
+	DUMMY: ''
 };
 
 

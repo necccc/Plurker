@@ -12,7 +12,7 @@ plurker.PlurkStorage = new Class({
 
 	onDBReady: function() {
 
-		LOG("NOW, I WOULD USE THE DB PLEASE!")
+		LOG("NOW, I WOULD USE THE DB PLEASE!");
 
 	}
 

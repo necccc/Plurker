@@ -1,7 +1,6 @@
 plurker.Storage = new Class({
 
-	Implements: Options,
-	Implements: plurker.AIRStorage,
+	Implements: [Options, plurker.AIRStorage],
 
 	options: {},
 

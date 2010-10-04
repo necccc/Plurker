@@ -35,19 +35,19 @@ plurker.Schema = new Class({
 
 		users: {
 			id:                'INTEGER PRIMARY KEY',
-			display_name:      'TEXT',
-			is_channel:        'INTEGER DEFAULT 0',
-			nick_name:         'TEXT',
-			has_profile_image: 'INTEGER DEFAULT 0',
-			location:          'TEXT DEFAULT ""',
-			date_of_birth:     'DATE',
-			relationship:      'TEXT DEFAULT ""',
 			avatar:            'INTEGER DEFAULT 0',
+			date_of_birth:     'DATE',
+			display_name:      'TEXT',
 			full_name:         'TEXT DEFAULT ""',
 			gender:            'INTEGER DEFAULT 1',
-			page_title:        'TEXT DEFAULT ""',
+			has_profile_image: 'INTEGER DEFAULT 0',
+			karma:             'REAL DEFAULT 0',
+			location:          'TEXT DEFAULT ""',
+			nick_name:         'TEXT',
 			recruited:         'INTEGER DEFAULT 0',
-			karma:             'REAL DEFAULT 0'
+			relationship:      'TEXT DEFAULT ""',
+			page_title:        'TEXT DEFAULT ""',
+			is_channel:        'INTEGER DEFAULT 0'
 		}
 	}
 });

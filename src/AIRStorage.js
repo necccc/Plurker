@@ -149,8 +149,63 @@ plurker.AIRStorage = new Class({
 			LOG("Error message:", error.message);
 			LOG("Details:", error.details);
 		}
+	},
+
+	query: function(queryData) {
+
+		var _statement = new air.SQLStatement(),
+			_params = queryData.data || false;
+
+		_statement.sqlConnection = this.db;
+		_statement.text = queryData.sql;
+
+		if(_params) {
+			for(var i in _params) {
+				_statement.parameters[i] = _params[i];
+			}
+		}
+
+		_statement.addEventListener(air.SQLEvent.RESULT, this.resultWrapper.bindWithEvent(this,queryData.success));
+		_statement.addEventListener(air.SQLErrorEvent.ERROR, this.resultWrapper.bindWithEvent(this,queryData.error));
+
+		_statement.execute();
+
+	},
+
+	resultWrapper: function(evt, callback) {
+
+		var result,data;
+
+		if(evt.type === 'result') {
+
+			result = evt.target.getResult();
+			data = ( !!result.data ) ? result.data : [];
+
+			callback.call(this, {
+				success: result.complete,
+				data: data,
+				length: data.length
+			});
+
+			return;
+		}
+
+		if(evt.type === 'error') {
+
+			callback.call(this, {
+				success: false,
+				error: {
+					message: evt.text,
+					description: evt.error,
+					code: evt.errorID
+				}
+			});
+
+			return;
+		}
+
+
+
 	}
-
-
 
 });
