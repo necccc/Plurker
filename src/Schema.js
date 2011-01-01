@@ -45,9 +45,7 @@ plurker.Schema = new Class({
 			location:          'TEXT DEFAULT ""',
 			nick_name:         'TEXT',
 			recruited:         'INTEGER DEFAULT 0',
-			relationship:      'TEXT DEFAULT ""',
-			page_title:        'TEXT DEFAULT ""',
-			is_channel:        'INTEGER DEFAULT 0'
+			relationship:      'TEXT DEFAULT ""'
 		}
 	}
 });

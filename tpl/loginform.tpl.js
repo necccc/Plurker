@@ -4,10 +4,10 @@ plurker.tpl.loginform = '<div>' +
 		'<span class="info"></span>' +
 		'<fieldset>' +
 			'<label>Login</label>' +
-			'<input type="text" name="username" />' +
+			'<input type="text" name="username" value="nec@shell8.net "/>' +
 			'<br />' +
 			'<label>Pass</label>' +
-			'<input type="password" name="password" />' +
+			'<input type="password" name="password" value="qqwe321" />' +
 			'<br />' +
 			'<input type="submit" />' +
 			'<br />' +

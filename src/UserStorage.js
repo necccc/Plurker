@@ -8,6 +8,8 @@ plurker.UserStorage = new Class({
 
 	initialize: function(options){
 		this.parent(options);
+
+		this.avatars = new plurker.AvatarStorage();
 	},
 
 	onDBReady: function() {
@@ -18,13 +20,16 @@ plurker.UserStorage = new Class({
 
 
 
-	getUserById: function(id, receiveCallback) {
+	getUserById: function (id, receiveCallback) {
+		this._getLocalUser(id, receiveCallback);
+	},
 
-		this.getLocalUser(id,receiveCallback);
+	addUserById: function (userInfo, receiveCallback) {
+		this._putLocalUser(userInfo, receiveCallback);
 	},
 
 
-	getLocalUser: function(id,receiveCallback) {
+	_getLocalUser: function (id, receiveCallback) {
 
 		var sql = "SELECT * FROM users WHERE id == :userid";
 
@@ -33,30 +38,69 @@ plurker.UserStorage = new Class({
 			data: {
 				':userid': id
 			},
-			success: this.localUserResult.bindWithEvent(this, id, receiveCallback),
-			error:  this.localUserResult.bindWithEvent(this, id, receiveCallback)
+			success: this._localUserResult.bindWithEvent(this, {
+				userId: id,
+				receiveCallback: receiveCallback
+			}),
+			error:  this._localUserResult.bindWithEvent(this, {
+				userId: id,
+				receiveCallback: receiveCallback
+			})
 		});
 	},
 
-	localUserResult: function(response, id, receiveCallback) {
+	_localUserResult: function(response, args) {
 
 		if( !response.success ) {
 			return;
 		}
 
 		if( response.success && response.length < 1 ) {
-			// remote get needed
-			this.getRemoteUser(id, receiveCallback);
+			// remote needed
+			this._getRemoteUser(args.userId, args.receiveCallback);
 			return;
 		}
 
-		receiveCallback.call(this, response.data);
-		return;
+		this.avatars.getAvatarByUser(response.data[0], this._avatarResult.bindWithEvent(this, {
+				userInfo: response.data[0],
+				receiveCallback: args.receiveCallback
+		}));
 
 	},
 
+	_putLocalUser: function (userInfo, receiveCallback) {
+		var fields = "id,avatar,date_of_birth,display_name,full_name,gender,has_profile_image,karma,location,nick_name,recruited,relationship",
+			sql = 'INSERT INTO users (' + fields + ') ' +
+					'VALUES (:id,:avatar,:date_of_birth,:display_name,:full_name,:gender,:has_profile_image,:karma,:location,:nick_name,:recruited,:relationship)',
+			dataObj = {};
 
-	getRemoteUser: function(id, receiveCallback) {
+		for (var i in userInfo) {
+			if (fields.indexOf(i) > -1) {
+				if (i == "date_of_birth") {
+					dataObj[':' + i] = new Date(userInfo[i]);
+				} else {
+					dataObj[':' + i] = userInfo[i];
+				}
+			}
+		}
+
+		this.query({
+			sql: sql,
+			data: dataObj,
+			success: (receiveCallback) ? receiveCallback : function () {},
+			error: function (event) {
+				LOG('userdata save ERROR');
+				LOG("Error message:");
+				LOG(event.error.message);
+				LOG("Details:");
+				LOG(event.error.details);
+			}
+		});
+	},
+
+
+
+	_getRemoteUser: function(id, receiveCallback) {
 
 		//PUBLICPROFILE
 		plurker.api.get(
@@ -64,44 +108,33 @@ plurker.UserStorage = new Class({
 			{
 				user_id: id
 			},
-			this.remoteUserResult.bindWithEvent(this, id, receiveCallback)
+			this._remoteUserResult.bindWithEvent(this, {
+				receiveCallback: receiveCallback
+			})
 		);
 
 	},
 
-	remoteUserResult: function(response, id, receiveCallback) {
-		LOG(response)
-
+	_remoteUserResult: function(response, args) {
 		if( typeof response.user_info != 'undefined') {
-			// get image, write data
-			this.getUserImageRemote(id,response.user_info);
+
+			// write local data
+			// TODO
+			this._putLocalUser(response.user_info);
+
+			// get image
+			this.avatars.getAvatarByUser(response.user_info, this._avatarResult.bindWithEvent(this, {
+				userInfo: response.user_info,
+				receiveCallback: args.receiveCallback
+			}));
 		}
 	},
 
-	getUserImage: function(id) {
-		//
-	},
-
-	getUserImageRemote: function(id, userInfo) {
-		//
-LOG(userInfo);
-
-		if( userInfo.has_profile_image == 1 && userInfo.avatar != null) {
-//http://avatars.plurk.com/{user_id}-small{avatar}.gif
-//http://avatars.plurk.com/{user_id}-medium{avatar}.gif
-		}
-
-		if (userInfo.has_profile_image == 1 && userInfo.avatar == null) {
-//http://avatars.plurk.com/{user_id}-small.gif
-//http://avatars.plurk.com/{user_id}-medium.gif
-
-		}
-
-		if (userInfo.has_profile_image == 0 ) {
-//http://www.plurk.com/static/default_small.gif
-//http://www.plurk.com/static/default_medium.gif
-		}
-
+	_avatarResult: function (avatars, args) {
+		var userInfo = args.userInfo;
+		userInfo.avatars = avatars;
+		args.receiveCallback.call(this, userInfo);
 	}
+
 
 });

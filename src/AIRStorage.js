@@ -8,13 +8,13 @@ plurker.AIRStorage = new Class({
 		dbFile: "PlurkerDB.db"
 	},
 
-	initialize: function(options) {
+	initialize: function (options) {
 		this.setOptions(options);
 	},
 
-	connect: function() {
+	connect: function () {
 
-		if( !plurker.db ) {
+		if (!plurker.db) {
 
 			// no instance of db connection,
 			// this should be the one and only connection instance,
@@ -39,19 +39,19 @@ plurker.AIRStorage = new Class({
 		}
 	},
 
-	dbOpenHandler: function(e) {
+	dbOpenHandler: function (e) {
 		//LOG("air.SQLEvent.OPEN");
 
 		this.db = plurker.db = e.currentTarget;
 		this.onDBReady();
 	},
 
-	dbErrorHandler: function(e) {
+	dbErrorHandler: function (e) {
 		LOG("air.SQLErrorEvent.ERROR");
 		LOG(e);
 	},
 
-	schemaCheck: function() {
+	schemaCheck: function () {
 
 		var conn = new air.SQLConnection(),
 			schema;
@@ -78,7 +78,7 @@ plurker.AIRStorage = new Class({
 
 	},
 
-	schemaCreate: function() {
+	schemaCreate: function () {
 
 		$each( this.schema, function( columnObj, table){
 			this.createTable( table, columnObj );
@@ -86,17 +86,17 @@ plurker.AIRStorage = new Class({
 
 	},
 
-	checkTable: function( tableSchema ) {
+	checkTable: function (tableSchema) {
 
 		var table = this.schema[tableSchema.name],
 			columns = {};
 
-		$each(tableSchema.columns, function(columnSchema){
+		$each(tableSchema.columns, function (columnSchema){
 			columns[columnSchema.name] = columnSchema;
-		},this);
+		}, this);
 
-		for( var name in table ) {
-			if( !($chk(columns[name])
+		for (var name in table) {
+			if (!($chk(columns[name])
 					&& table[name].contains(columns[name].dataType) )
 			) {
 				this.alterTableAddCol(tableSchema.name, name, table[name] );
@@ -104,7 +104,7 @@ plurker.AIRStorage = new Class({
 		}
 	},
 
-	createTable: function( table, columnObj ) {
+	createTable: function (table, columnObj) {
 
 		var createStmt = new air.SQLStatement(),
 			sql = 'CREATE TABLE IF NOT EXISTS #table# ( #columns# );',
@@ -114,7 +114,7 @@ plurker.AIRStorage = new Class({
 
 		sql = sql.replace('#table#', table);
 
-		for(var name in columnObj ) {
+		for (var name in columnObj ) {
 			columns.push( name+" "+columnObj[name] );
 		}
 
@@ -130,7 +130,7 @@ plurker.AIRStorage = new Class({
 		}
 	},
 
-	alterTableAddCol: function ( table, column, column_attr) {
+	alterTableAddCol: function (table, column, column_attr) {
 
 		var createStmt = new air.SQLStatement(),
 			sql = 'ALTER TABLE #table# ADD COLUMN #column# #column_attr#;';
@@ -151,7 +151,7 @@ plurker.AIRStorage = new Class({
 		}
 	},
 
-	query: function(queryData) {
+	query: function (queryData) {
 
 		var _statement = new air.SQLStatement(),
 			_params = queryData.data || false;
@@ -159,24 +159,24 @@ plurker.AIRStorage = new Class({
 		_statement.sqlConnection = this.db;
 		_statement.text = queryData.sql;
 
-		if(_params) {
-			for(var i in _params) {
+		if (_params) {
+			for (var i in _params) {
 				_statement.parameters[i] = _params[i];
 			}
 		}
 
-		_statement.addEventListener(air.SQLEvent.RESULT, this.resultWrapper.bindWithEvent(this,queryData.success));
-		_statement.addEventListener(air.SQLErrorEvent.ERROR, this.resultWrapper.bindWithEvent(this,queryData.error));
+		_statement.addEventListener(air.SQLEvent.RESULT, this.resultWrapper.bindWithEvent(this, queryData.success));
+		_statement.addEventListener(air.SQLErrorEvent.ERROR, this.resultWrapper.bindWithEvent(this, queryData.error));
 
 		_statement.execute();
 
 	},
 
-	resultWrapper: function(evt, callback) {
+	resultWrapper: function (evt, callback) {
 
-		var result,data;
+		var result, data;
 
-		if(evt.type === 'result') {
+		if (evt.type === 'result') {
 
 			result = evt.target.getResult();
 			data = ( !!result.data ) ? result.data : [];
@@ -190,13 +190,14 @@ plurker.AIRStorage = new Class({
 			return;
 		}
 
-		if(evt.type === 'error') {
+		if (evt.type === 'error') {
 
 			callback.call(this, {
 				success: false,
 				error: {
 					message: evt.text,
 					description: evt.error,
+					details: evt.error.details,
 					code: evt.errorID
 				}
 			});

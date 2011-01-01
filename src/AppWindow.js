@@ -11,11 +11,46 @@ plurker.Window = new Class({
 
 		LOG('application');
 
+		this.users = new plurker.UserStorage();
+		this.avatars = new plurker.AvatarStorage();
 
-		new plurker.Account();
 		// watch login event
+		new plurker.Account({
+			onLogin: this.onLogin.bind(this)
+		});
 
 
+	},
+
+	onLogin: function (loginResponse) {
+
+		LOG(loginResponse.plurks);
+
+		this.users.getUserById(loginResponse.user_info.id, this.setUser.bind(this));
+
+		for(var id in loginResponse.plurks_users) {
+			// kaptunk kapcsibol 10 usert akiket lehet precahelni DB-be
+			this.users.getUserById(id, function(){ LOG(arguments); });
+		}
+
+
+// kapott plurkoket is db-be ha nincsenek meg ott
+// ha ott vannak updatelni az adataikat
+
+// majd lehet oket kitenni a listaba, updatelni a chrome kinezetet
+
+
+	},
+
+	setUser: function (userData) {
+		//LOG(userData);
+		this.user = userData;
+	},
+
+	getUser: function () {
+		return this.user;
 	}
+
+
 
 });

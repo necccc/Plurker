@@ -34,11 +34,23 @@ plurker.api = {
 		return proto + "www.plurk.com" + uri;
 	},
 	get: function(command, params, callback){
-		$.getJSON(
-			plurker.api.url(command),
-			$merge(params, {api_key:plurker.api.key }),
-			callback
-		);
+		// 4. arg lehet error callback handler
+		if(arguments[3]) {
+			$.ajax({
+				url: plurker.api.url(command),
+				type: "GET",
+				data: $merge(params, {api_key:plurker.api.key }),
+				dataType: "json",
+				success: callback,
+				error: arguments[3]
+			});
+		} else {
+			$.getJSON(
+				plurker.api.url(command),
+				$merge(params, {api_key:plurker.api.key }),
+				callback
+			);
+		}
 	},
 	post: function(command, params, callback){
 		$.ajax({
@@ -50,13 +62,23 @@ plurker.api = {
 		});
 	},
 	sget: function(command, params, callback){
-
-		//LOG(callback);
-		$.getJSON(
-			plurker.api.url(command, true),
-			$merge(params, {api_key:plurker.api.key }),
-			callback
-		);
+		// 4. arg lehet error callback handler
+		if(arguments[3]) {
+			$.ajax({
+				url: plurker.api.url(command, true),
+				type: "GET",
+				data: $merge(params, {api_key:plurker.api.key }),
+				dataType: "json",
+				success: callback,
+				error: arguments[3]
+			});
+		} else {
+			$.getJSON(
+				plurker.api.url(command, true),
+				$merge(params, {api_key:plurker.api.key }),
+				callback
+			);
+		}
 	},
 	spost: function(command, params, callback){
 		$.ajax({

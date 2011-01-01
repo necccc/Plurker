@@ -2,9 +2,12 @@ plurker.Account = new Class({
 
 	Implements: Options,
 
-	options: {},
+	options: {
+		onLogin: function () {}
+	},
 
 	initialize: function(options){
+		this.setOptions(options);
 
 		this.tpl = new plurker.Template( plurker.tpl.loginform );
 		this.tpl = $( this.tpl.run() );
@@ -12,14 +15,11 @@ plurker.Account = new Class({
 		this.setupLoginForm();
 
 		plurker.setContent(this.tpl);
-
-		this.users = new plurker.UserStorage();
-
 	},
 
 	setupLoginForm: function() {
 
-		this.tpl.find('#LoginForm').submit( this.onSubmit.bind(this) );
+		this.tpl.find('#LoginForm').submit( this.onSubmit.bindWithEvent(this) );
 
 	},
 
@@ -44,19 +44,18 @@ plurker.Account = new Class({
 					username: user,
 					password: pass
 			},
-			this.onLoginReponse.bind(this)
+			this.onLoginReponse.bind(this),
+			this.onErrorReponse.bind(this)
 		);
 	},
 
 	onLoginReponse: function(response) {
-		//LOG(response);
-
-		this.users.getUserById(response.user_info.id, this.setUser.bind(this));
-
+		this.options.onLogin.call(this, response);
 	},
 
-	setUser: function(user) {
-		LOG(user)
-	},
+	onErrorReponse: function(response) {
+		error = jQuery.parseJSON(response.responseText);
+		LOG(error.error_text);
+	}
 
 });
