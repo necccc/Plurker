@@ -5,10 +5,6 @@
 		<script type="text/javascript" src="lib/jquery-json.2.2.js"></script>
 		<script type="text/javascript">
 
-			var LOG = function (msg) {
-				alert(msg);
-			}
-
 			var SBinterface = {};
 
 			function __parseJSON (str) {
@@ -23,21 +19,12 @@
 				return eval(data);
 			}
 
-			function __addTplVars (varObj) {
-
-				for (var key in varObj) {
-					window[key] = varObj[key];
-				}
-
-			}
-
 			doLoad = function () {
 
 				window.childSandboxBridge = {
 					'parseJSON': __parseJSON,
 					'externalEval': __eval,
-					'functionFactory': __factory,
-					'addTplVars': __addTplVars
+					'functionFactory': __factory
 				};
 			};
 

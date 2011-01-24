@@ -24,14 +24,17 @@ plurker.Window = new Class({
 
 	onLogin: function (loginResponse) {
 
-		LOG(loginResponse.plurks);
-
 		this.users.getUserById(loginResponse.user_info.id, this.setUser.bind(this));
 
 		for(var id in loginResponse.plurks_users) {
 			// kaptunk kapcsibol 10 usert akiket lehet precahelni DB-be
-			this.users.getUserById(id, function(){ LOG(arguments); });
+			this.users.getUserById(id, function() {});
 		}
+
+		new plurker.Timeline({
+			initialPlurks: loginResponse.plurks
+		});
+
 
 
 // kapott plurkoket is db-be ha nincsenek meg ott

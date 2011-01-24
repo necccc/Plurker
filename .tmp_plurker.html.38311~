@@ -30,7 +30,6 @@
 			 */
 			function doLoad() {
 				window.ffactory = document.getElementById('EvalSandbox').contentWindow.childSandboxBridge.functionFactory;
-				window.addTplVars = document.getElementById('EvalSandbox').contentWindow.childSandboxBridge.addTplVars;
 				window.eeval = document.getElementById('EvalSandbox').contentWindow.childSandboxBridge.externalEval;
 				window.parseJSON = document.getElementById('EvalSandbox').contentWindow.childSandboxBridge.parseJSON;
 			}

@@ -12,10 +12,16 @@ plurker.Crome
 
 
 plurker.Account
-plurker.Timeline
-plurker.Plurk
-plurker.Discussion
+	handles user log in template, events, secure storage
 
+plurker.Timeline
+	handles plurks, plurk updates, plurk storage and retrieval
+
+plurker.Plurk
+	handles a single plurk, controls, events
+
+plurker.Discussion
+	handles a plurk discussion
 
 plurker.AppWindow
 plurker.DiscussionWindow
@@ -91,34 +97,11 @@ plurker.api = {
 	},
 	USERLOGIN: '/API/Users/login',
 	PUBLICPROFILE: '/API/Profile/getPublicProfile',
+	GETPLURK: '/API/Timeline/getPlurk',
+	GETPLURKS: '/API/Timeline/getPlurks',
 
 	DUMMY: ''
 };
-
-
-/**
- * $eval()
- *
- * prodives javascript eval() through a non-application
- * sandbox for Adove AIR security
- */
-$(window).load(function(){
-	window.$eval = document.getElementById('EvalSandbox').contentWindow.childSandboxBridge.externalEval;
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 plurker.toArray = function(obj){
 	return Array.prototype.slice.call(obj);
@@ -143,9 +126,9 @@ plurker.strings = {
 	 * @param {Boolean} dots - optional, put dots at the end?
 	 */
 	truncateByLength: function(str, len, dots) {
+
 		if (str.length < len)
 			return str;
-
 		var parts = str.split(' '),
 			pLen = parts.length,
 			c = 0,
@@ -207,8 +190,3 @@ plurker.strings = {
 	}
 
 };
-
-
-(function(plurker){
-
-})(plurker);

@@ -18,8 +18,6 @@ plurker.UserStorage = new Class({
 
 	},
 
-
-
 	getUserById: function (id, receiveCallback) {
 		this._getLocalUser(id, receiveCallback);
 	},
@@ -27,7 +25,6 @@ plurker.UserStorage = new Class({
 	addUserById: function (userInfo, receiveCallback) {
 		this._putLocalUser(userInfo, receiveCallback);
 	},
-
 
 	_getLocalUser: function (id, receiveCallback) {
 
@@ -40,13 +37,16 @@ plurker.UserStorage = new Class({
 			},
 			success: this._localUserResult.bindWithEvent(this, {
 				userId: id,
-				receiveCallback: receiveCallback
+				receiveCallback: receiveCallback,
+				errorCallback: (arguments[2]) ? arguments[2] : false
 			}),
 			error:  this._localUserResult.bindWithEvent(this, {
 				userId: id,
-				receiveCallback: receiveCallback
+				receiveCallback: receiveCallback,
+				errorCallback: (arguments[2]) ? arguments[2] : false
 			})
 		});
+
 	},
 
 	_localUserResult: function(response, args) {
@@ -69,13 +69,14 @@ plurker.UserStorage = new Class({
 	},
 
 	_putLocalUser: function (userInfo, receiveCallback) {
-		var fields = "id,avatar,date_of_birth,display_name,full_name,gender,has_profile_image,karma,location,nick_name,recruited,relationship",
-			sql = 'INSERT INTO users (' + fields + ') ' +
-					'VALUES (:id,:avatar,:date_of_birth,:display_name,:full_name,:gender,:has_profile_image,:karma,:location,:nick_name,:recruited,:relationship)',
+
+		var q = this.prepareForQuery('users'),
+			sql = 'INSERT INTO users (' + q.fields + ') ' +
+					'VALUES (' + q.values + ')',
 			dataObj = {};
 
 		for (var i in userInfo) {
-			if (fields.indexOf(i) > -1) {
+			if (q.fields.indexOf(i) > -1) {
 				if (i == "date_of_birth") {
 					dataObj[':' + i] = new Date(userInfo[i]);
 				} else {

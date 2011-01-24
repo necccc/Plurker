@@ -6,10 +6,10 @@
 	Specifies parameters for identifying, installing, and launching AIR applications.
 
 	xmlns - The Adobe AIR namespace: http://ns.adobe.com/air/application/2.0
-			The last segment of the namespace specifies the version 
+			The last segment of the namespace specifies the version
 			of the AIR runtime required for this application to run.
-			
-	minimumPatchLevel - The minimum patch level of the AIR runtime required to run 
+
+	minimumPatchLevel - The minimum patch level of the AIR runtime required to run
 			the application. Optional.
 -->
 
@@ -35,7 +35,7 @@
 	<initialWindow>
 		<!-- The main HTML file of the application. Required. -->
 		<content>plurker.html</content>
-		
+
 		<!-- The title of the main window. Optional. -->
 		<title/>
 
@@ -83,19 +83,19 @@
 	<!-- <programMenuFolder></programMenuFolder> -->
 
 	<!-- The icon the system uses for the application. For at least one resolution,
-		 specify the path to a PNG file included in the AIR package. Optional. -->
+		specify the path to a PNG file included in the AIR package. Optional. -->
 	<icon>
-	<image16x16>icons/AIRApp_16.png</image16x16>
-<image32x32>icons/AIRApp_32.png</image32x32>
-<image48x48>icons/AIRApp_48.png</image48x48>
-<image128x128>icons/AIRApp_128.png</image128x128>
-</icon>
+		<image16x16>icons/AIRApp_16.png</image16x16>
+		<image32x32>icons/AIRApp_32.png</image32x32>
+		<image48x48>icons/AIRApp_48.png</image48x48>
+		<image128x128>icons/AIRApp_128.png</image128x128>
+	</icon>
 
 	<!-- Whether the application handles the update when a user double-clicks an update version
 	of the AIR file (true), or the default AIR application installer handles the update (false).
 	Optional. Default false. -->
 	<!-- <customUpdateUI></customUpdateUI> -->
-	
+
 	<!-- Whether the application can be launched when the user clicks a link in a web browser.
 	Optional. Default false. -->
 	<!-- <allowBrowserInvocation></allowBrowserInvocation> -->

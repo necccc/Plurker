@@ -3,23 +3,50 @@ plurker.Schema = new Class({
 	initialize: function(){
 	},
 
+	prepareForQuery: function (table) {
+
+		var schema = this.schema[table],
+			fields = [],
+			values = [];
+
+		if (!this.schema[table]) {
+			return {
+				fields: '',
+				values: ''
+			};
+		}
+
+		for ( var field in schema) {
+			fields.push(field);
+			values.push(':' + field);
+		}
+
+		fields = fields.join(',');
+		values = values.join(',');
+
+		return {
+			fields: fields,
+			values: values
+		};
+	},
+
 	schema: {
 		plurks: {
-			plurk_id:             'INTEGER PRIMARY KEY',
-			responses_seen:       'INTEGER',
-			qualifier:            'TEXT',
-			response_count:       'INTEGER',
-			limited_to:           'BLOB',
-			no_comments:          'INTEGER',
+			content:              'TEXT',
+			content_raw:          'TEXT',
 			is_unread:            'INTEGER',
 			lang:                 'TEXT',
-			content_raw:          'TEXT',
-			user_id:              'INTEGER',
+			limited_to:           'BLOB',
+			no_comments:          'INTEGER',
+			owner_id:             'INTEGER',
+			plurk_id:             'INTEGER PRIMARY KEY',
 			plurk_type:           'INTEGER',
-			content:              'TEXT',
-			qualifier_translated: 'TEXT',
 			posted:               'DATE',
-			owner_id:             'INTEGER'
+			qualifier:            'TEXT',
+			qualifier_translated: 'TEXT',
+			response_count:       'INTEGER',
+			responses_seen:       'INTEGER',
+			user_id:              'INTEGER'
 		},
 
 		responses: {

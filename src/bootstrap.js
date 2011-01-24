@@ -1,4 +1,4 @@
-$(function(){
+$(window).load(function(){
 	if(plurker.Window){
 		plurker.window = new plurker.Window();
 	} else {

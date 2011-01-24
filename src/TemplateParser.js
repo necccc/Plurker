@@ -2,7 +2,7 @@ plurker.TemplateParser = new Class({
 
 	Implements: Options,
 
-	_extractContext: true,
+	_extractContext: false,
 	_singleQuote: '__Q%Q__',
 
 	regex: /<%=?(.*?)%>/g,
@@ -63,14 +63,14 @@ plurker.TemplateParser = new Class({
 			post += "}";
 			if (innerDebug) {
 				post += "} catch(e) {"+
-					" $.console.error(e);"+
-					" $.console.info('scope', this);"+
-					" if (this.__run) { $.console.info({evaledCode:this.__run+''}); }"+ // sajnos a \n-eket mar kiharapja, de a semminel tobb
+					" LOG(e);"+
+					" LOG('scope ' + this.toString());"+
+					" if (this.__run) { LOG({evaledCode:this.__run+''}); }"+ // sajnos a \n-eket mar kiharapja, de a semminel tobb
 					" }";
 			}
 		}
 
-		return new Function(pre + funcBody + post);
+		return ffactory(pre + funcBody + post);
 	}
 
 });

@@ -10,7 +10,7 @@ plurker.Account = new Class({
 		this.setOptions(options);
 
 		this.tpl = new plurker.Template( plurker.tpl.loginform );
-		this.tpl = $( this.tpl.run() );
+		this.tpl = $(this.tpl.run());
 
 		this.setupLoginForm();
 
@@ -19,7 +19,7 @@ plurker.Account = new Class({
 
 	setupLoginForm: function() {
 
-		this.tpl.find('#LoginForm').submit( this.onSubmit.bindWithEvent(this) );
+		this.tpl.find('#LoginForm').submit(this.onSubmit.bindWithEvent(this));
 
 	},
 
@@ -41,8 +41,8 @@ plurker.Account = new Class({
 		plurker.api.sget(
 			plurker.api.USERLOGIN,
 			{
-					username: user,
-					password: pass
+				username: user,
+				password: pass
 			},
 			this.onLoginReponse.bind(this),
 			this.onErrorReponse.bind(this)

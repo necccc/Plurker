@@ -5,12 +5,11 @@ plurker.Template = new Class({
 
 	initialize: function(value, options) {
 
-
 		if (typeof(value) != 'string') {
 			if (typeof(value) != 'undefined') {
-				$.console.log("param (defined, yet not a string): ", value);
+				LOG("param (defined, yet not a string): ", value);
 			}
-			$.console.trace();
+			//$.console.trace();
 			throw ("Template is missing or param is not a string, cannot initialize!"); // new Error-t nem mindig kapja el a firebug - ha mar lud...
 		}
 
@@ -37,7 +36,15 @@ plurker.Template = new Class({
 		var context = {
 			__run: this._func
 		};
+
+		locals = (locals)? locals : {};
+
 		$extend(context, locals);
+
+		// tpl compile utan a context menthetetlenul
+		// az iframeben maradt, oda kell pakolni a valtozoinkat
+		addTplVars(locals);
+
 		return context.__run();
 	}
 

@@ -23,21 +23,12 @@
 				return eval(data);
 			}
 
-			function __addTplVars (varObj) {
-
-				for (var key in varObj) {
-					window[key] = varObj[key];
-				}
-
-			}
-
 			doLoad = function () {
 
 				window.childSandboxBridge = {
 					'parseJSON': __parseJSON,
 					'externalEval': __eval,
-					'functionFactory': __factory,
-					'addTplVars': __addTplVars
+					'functionFactory': __factory
 				};
 			};
 
