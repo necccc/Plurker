@@ -67,6 +67,9 @@ plurker.Chrome = new Class({
 	},
 
 	close : function() {
+		/*
+		TODO: al-ablakoknal ez nem jo
+		 */
 		var eExit = new air.Event(air.Event.EXITING, true, true);
 		air.NativeApplication.nativeApplication.dispatchEvent(eExit);
 		air.NativeApplication.nativeApplication.exit();

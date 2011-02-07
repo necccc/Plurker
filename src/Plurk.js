@@ -31,6 +31,10 @@ plurker.Plurk = new Class({
 		//
 
 		this.users.getUserById(this.options.owner_id, this.setOwner.bind(this));
+
+
+
+		this.newWindow = false;
 	},
 
 	setOwner: function (ownerData) {
@@ -83,8 +87,41 @@ plurker.Plurk = new Class({
 			}));
 		}
 
+		this.element[0].addEventListener('dragstart', this.dragStartHandler.bindWithEvent(this));
+		this.element[0].addEventListener('dragend',  this.dragStopHandler.bindWithEvent(this));
+
 		return this.element;
 
-	}
+	},
 
+	dragStartHandler: function (event){
+		event.dataTransfer.effectAllowed = "copy";
+		event.dataTransfer.setData("plurk", new Object(this.options));
+	},
+
+	dragStopHandler: function (event) {
+		/*
+			create a discussion window on drag stop position
+		 */
+		var options = new air.NativeWindowInitOptions(),
+			dropWindow,
+			newX = window.nativeWindow.x + event.x,
+			newY = window.nativeWindow.y + event.y - this.element.height(),
+			windowBounds, htmlView;
+
+		options.transparent = true;
+		options.systemChrome = air.NativeWindowSystemChrome.NONE;
+		options.type = air.NativeWindowType.UTILITY;
+
+		dropWindow = new air.NativeWindow(options);
+		dropWindow.title = "Discussion";
+
+		windowBounds = new air.Rectangle(newX, newY, 300, 400);
+		htmlView = new air.HTMLLoader();
+
+		dropWindow = air.HTMLLoader.createRootWindow(true, options, false, windowBounds);
+		dropWindow.load(new air.URLRequest('discussion.html'));
+
+		dropWindow.window.plurkDiscussionData = new Object(this.options);
+	}
 });

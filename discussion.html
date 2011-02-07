@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Plurker</title>
+		<title>Plurker Discussion</title>
 		<link href="plurker.css" rel="stylesheet" type="text/css" />
 	</head>
 
@@ -11,7 +11,6 @@
 				<span id="Close"></span>
 			</div>
 			<div id="Content">
-				asd
 			</div>
 			<div id="Bottom">
 				<span id="ResizeBottomRight"></span>
@@ -30,6 +29,7 @@
 			 */
 			function doLoad() {
 				window.ffactory = document.getElementById('EvalSandbox').contentWindow.childSandboxBridge.functionFactory;
+				window.addTplVars = document.getElementById('EvalSandbox').contentWindow.childSandboxBridge.addTplVars;
 				window.eeval = document.getElementById('EvalSandbox').contentWindow.childSandboxBridge.externalEval;
 				window.parseJSON = document.getElementById('EvalSandbox').contentWindow.childSandboxBridge.parseJSON;
 			}
@@ -64,20 +64,15 @@
 		<script type="text/javascript" src="src/Storage.js"></script>
 		<script type="text/javascript" src="src/PlurkStorage.js"></script>
 		<script type="text/javascript" src="src/UserStorage.js"></script>
-
 		<script type="text/javascript" src="src/AvatarStorage.js"></script>
+		<script type="text/javascript" src="src/ResponseStorage.js"></script>
 
-		<script type="text/javascript" src="src/Account.js"></script>
-		<script type="text/javascript" src="tpl/loginform.tpl.js"></script>
+		<script type="text/javascript" src="src/Discussion.js"></script>
+		<script type="text/javascript" src="tpl/discussionList.tpl.js"></script>
 
-		<script type="text/javascript" src="src/Timeline.js"></script>
-		<script type="text/javascript" src="tpl/timeline.tpl.js"></script>
+		<script type="text/javascript" src="src/DiscussionItem.js"></script>
+		<script type="text/javascript" src="tpl/discussionItem.tpl.js"></script>
 
-		<script type="text/javascript" src="src/Plurk.js"></script>
-		<script type="text/javascript" src="tpl/plurk.tpl.js"></script>
-
-		<script type="text/javascript" src="src/AppWindow.js"></script>
-
-
+		<script type="text/javascript" src="src/DiscussionWindow.js"></script>
 	</body>
 </html>

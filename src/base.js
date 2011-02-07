@@ -97,8 +97,31 @@ plurker.api = {
 	},
 	USERLOGIN: '/API/Users/login',
 	PUBLICPROFILE: '/API/Profile/getPublicProfile',
+
 	GETPLURK: '/API/Timeline/getPlurk',
 	GETPLURKS: '/API/Timeline/getPlurks',
+
+	/**
+	Required parameters:
+		plurk_id: The plurk that the responses belong to.
+		from_response: Only fetch responses from an offset - could be 5, 10 or 15.
+	 */
+	GETRESPONSES: '/API/Responses/get',
+
+	/**
+	Required parameters:
+		plurk_id: The plurk that the responses should be added to.
+		content: The response's text.
+		qualifier: The Plurk's qualifier, must be in English. Can be following: Show example data
+	 */
+	RESPONSEADD: '/API/Responses/responseAdd',
+
+	/**
+	Required parameters:
+		response_id: The id of the response to delete.
+		plurk_id: The plurk that the response belongs to.
+	 */
+	RESPONSEDELETE: '/API/Responses/responseDelete',
 
 	DUMMY: ''
 };

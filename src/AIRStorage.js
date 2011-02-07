@@ -153,6 +153,14 @@ plurker.AIRStorage = new Class({
 
 	query: function (queryData) {
 
+
+		if (!this.db) {
+			LOG("no db yet")
+			setTimeout(this.query.bind(this), 20, queryData);
+			return;
+		}
+
+
 		var _statement = new air.SQLStatement(),
 			_params = queryData.data || false;
 

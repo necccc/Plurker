@@ -1,4 +1,4 @@
-plurker.tpl.plurk = '<li style="-webkit-user-drag: element;">' +
+plurker.tpl.discussionItem = '<li>' +
 	'<% if (lazy) { %>' +
 		'<div class="owner lazy">' +
 			'<img src="" alt="" /><br />' +

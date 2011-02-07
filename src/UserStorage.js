@@ -49,20 +49,20 @@ plurker.UserStorage = new Class({
 
 	},
 
-	_localUserResult: function(response, args) {
+	_localUserResult: function(result, args) {
 
-		if( !response.success ) {
+		if( !result.success ) {
 			return;
 		}
 
-		if( response.success && response.length < 1 ) {
+		if( result.success && result.length < 1 ) {
 			// remote needed
 			this._getRemoteUser(args.userId, args.receiveCallback);
 			return;
 		}
 
-		this.avatars.getAvatarByUser(response.data[0], this._avatarResult.bindWithEvent(this, {
-				userInfo: response.data[0],
+		this.avatars.getAvatarByUser(result.data[0], this._avatarResult.bindWithEvent(this, {
+				userInfo: result.data[0],
 				receiveCallback: args.receiveCallback
 		}));
 
